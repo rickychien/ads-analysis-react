@@ -7,9 +7,9 @@ export default class RecordItemRow extends React.Component {
 
 	handleChange() {
 		let category = this.props.category;
-		let id = this.props.id + '.json';
-console.log(this.props)
-		$.get('data/' + category + '/' + id, data => {
+		let id = this.props.id;
+
+		$.get(`data/${category}/${id}.json`, data => {
 			this.props.onSelect(data);
 		});
 	}
