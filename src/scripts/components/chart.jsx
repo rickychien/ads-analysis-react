@@ -1,13 +1,17 @@
 'use strict';
 
 import React from 'react';
-import $ from 'jquery';
 import Highcharts from 'react-highcharts';
 
 export default class Chart extends React.Component {
 
-	updateColumnChart() {
-		var options = {
+  constructor() {
+    super();
+    this._updateColumnChart = this._updateColumnChart.bind(this);
+  }
+
+	_updateColumnChart() {
+		let options = {
       chart: {
         type: 'column'
       },
@@ -37,10 +41,11 @@ export default class Chart extends React.Component {
         }
       },
       series: []
-    },
-    series = options.series;
+    };
+    let series = options.series;
+    let records = this.props.records;
 
-    for (let attr in this.props.attributes) {
+    for (let attr in records[0]) {
       if (attr.indexOf('_count') !== -1) {
         series.push({
           name: attr[0].toUpperCase() + attr.substring(1,
@@ -50,13 +55,13 @@ export default class Chart extends React.Component {
       }
     }
 
-    this.each(record => {
-      if (record.get('selected')) {
+    records.forEach(record => {
+      if (this.props.selections[record.id]) {
         options.xAxis.categories.push('ID ' + record.id);
         series.forEach(seriesItem => {
-          var name = seriesItem.name;
-          seriesItem.data.push(record.get(name[0].toLowerCase() +
-            name.slice(1) + '_count'));
+          let name = seriesItem.name;
+          name = name[0].toLowerCase() + name.slice(1) + '_count';
+          seriesItem.data.push(record[name]);
         });
       }
     });
@@ -64,11 +69,96 @@ export default class Chart extends React.Component {
     return options;
 	}
 
-	render()  {
-		let data = this.props.data;
+  _updateLineChart() {
+    let options = [];
+    let option;
+    let records = this.props.records;
+    let rawRecords = this.props.rawRecords;
+
+    for (let attr in records[0]) {
+      if (attr.indexOf('_count') !== -1) {
+        let title = attr[0].toUpperCase() + attr.substring(1,
+                   attr.indexOf('_count')) + 's';
+        option = {
+          chart: {
+            type: 'line'
+          },
+          credits: {
+            enabled: false
+          },
+          title: {
+            text: 'Line Chart - ' + title
+          },
+          xAxis: {
+            type: 'datetime'
+          },
+          yAxis: {
+            title: {
+              text: title
+            },
+            plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+            }]
+          },
+          tooltip: {
+            valueSuffix: ' ' + attr.substring(0, attr.indexOf('_count')) + 's'
+          },
+          series: []
+        };
+        records.forEach(record => {
+          let id = record.id;
+
+          if (this.props.selections[id]) {
+            let values = {};
+            let seriesData = [];
+
+            for (let key in rawRecords[id]) {
+              let rawRecord = rawRecords[id][key];
+              let date;
+              date = new Date(rawRecord['updated_at']);
+              date = date.toString().substring(0, 18) + ':00';
+              values[date] = values[date] || 0;
+              values[date] += rawRecord[attr];
+            }
+
+            for (let time in values) {
+              let date = new Date(time);
+              seriesData.push([date.getTime(), values[time]]);
+            }
+
+            option.series.push({
+              name: 'ID ' + id,
+              data: seriesData.sort()
+            });
+          }
+        });
+
+        options.push(option);
+      }
+    }
+
+    return options;
+}
+
+	render() {
+    let columnOption = this._updateColumnChart();
+    let lineOptions = this._updateLineChart();
 
 		return (
-			<div />
+      <div className="panel panel-info tab-pane fade in active" id="chart">
+        <div className="panel-heading">Chart</div>
+        <div className="panel-body">
+          <div className="alert alert-success">
+            <span className="glyphicon glyphicon-info-sign"></span>
+            Tips : Select item(s) from Grid to see Chart visualization.
+          </div>
+          <Highcharts config={columnOption} />
+          <Highcharts config={lineOptions[0]} />
+          <Highcharts config={lineOptions[1]} />
+        </div>
+      </div>
 		);
 	}
 

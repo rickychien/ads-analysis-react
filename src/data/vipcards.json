@@ -1,4 +1,4 @@
 [
-  {"id":1,"name":"VIP Card 1","read":876,"unread":432,"created":"2013/11/21 08:21"},
-  {"id":2,"name":"VIP Card 2","read":886,"unread":554,"created":"2013/11/21 14:55"}
+  {"id":1,"name":"VIP Card 1","read_count":876,"unread_count":432,"created":"2013/11/21 08:21"},
+  {"id":2,"name":"VIP Card 2","read_count":886,"unread_count":554,"created":"2013/11/21 14:55"}
 ]

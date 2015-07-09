@@ -6,33 +6,41 @@ import RecordItemRow from './record-item-row.jsx';
 
 export default class Grid extends React.Component {
 
-	updateCollection(data) {
-		console.log('updateCollection ')
-	}
+  render() {
+    let records = this.props.records;
+    let rows = records.map(record => {
+      return (
+        <RecordItemRow
+          key={record.id}
+          id={record.id}
+          record={record}
+          checked={this.props.selections[record.id]}
+          onSelect={this.props.onRowSelect}
+        />
+      );
+    });
 
-	render() {
-		let records = this.props.records;
-		let rows = records.map(record => {
-			return (
-				<RecordItemRow
-					key={record.id}
-					id={record.id}
-					record={record}
-					category={this.props.category}
-					onSelect={this.updateCollection}
-				/>);
-		});
-
-		return (
-			<table id="grid-data" className="table">
-				<thead>
-					<RecordCategoryRow records={records}/>
-				</thead>
-				<tbody>
-					{rows}
-				</tbody>
-			</table>
-		);
-	}
+    return (
+      <div className="panel panel-info tab-pane fade in active" id="grid">
+        <div className="panel-heading">Grid</div>
+        <div className="panel-body">
+          <div className="alert alert-success">
+            <span className="glyphicon glyphicon-info-sign"></span>
+            Tips : Select item(s) and then click Chart / Map to see visualization.
+          </div>
+          <div className="table-responsive" id="grid-table">
+            <table id="grid-data" className="table">
+              <thead>
+                <RecordCategoryRow records={records}/>
+              </thead>
+              <tbody>
+                {rows}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
 }
