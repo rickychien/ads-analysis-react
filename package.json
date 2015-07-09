@@ -12,6 +12,7 @@
     "bootstrap-sass": "^3.3.5",
     "jquery": "^2.1.4",
     "react": "^0.13.3",
+    "react-gmaps": "^0.1.10",
     "react-highcharts": "^1.0.1"
   },
   "devDependencies": {

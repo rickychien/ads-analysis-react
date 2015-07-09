@@ -26,7 +26,7 @@ export default class Grid extends React.Component {
         <div className="panel-body">
           <div className="alert alert-success">
             <span className="glyphicon glyphicon-info-sign"></span>
-            {'Tips : Select item(s) and then click Chart / Map to see visualization.'}
+            {'Tips : Select item(s) and click Chart / Map for visualization.'}
           </div>
           <div className="table-responsive" id="grid-table">
             <table id="grid-data" className="table">

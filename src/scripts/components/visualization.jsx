@@ -62,15 +62,29 @@ export default class Visualization extends React.Component {
                   onRowSelect={this._updateRawRecords}
                 />;
     } else if (tab === 'map') {
-      partial = <Maps />;
+      partial = <Maps
+                  {...this.state}
+                />;
     }
 
     return (
       <div>
         <ul className="nav nav-tabs nav-justified" id="tabs">
-          <li><a data-toggle="tab" href="#chart" id="chart-tab" onClick={this._handleTab.bind(this, 'chart')}>Chart</a></li>
-          <li className="active"><a data-toggle="tab" href="#grid" id="grid-tab" onClick={this._handleTab.bind(this, 'grid')}>Grid</a></li>
-          <li><a data-toggle="tab" href="#map" id="map-tab" onClick={this._handleTab.bind(this, 'map')}>Map</a></li>
+          <li>
+            <a data-toggle="tab" href="#chart" id="chart-tab"
+              onClick={this._handleTab.bind(this, 'chart')}>Chart
+            </a>
+          </li>
+          <li className="active">
+            <a data-toggle="tab" href="#grid" id="grid-tab"
+              onClick={this._handleTab.bind(this, 'grid')}>Grid
+            </a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#map" id="map-tab"
+              onClick={this._handleTab.bind(this, 'map')}>Map
+            </a>
+          </li>
         </ul>
         <div className="well">
           <div className="progress-wrapper" />

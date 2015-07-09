@@ -31,8 +31,8 @@ export default class Chart extends React.Component {
         }
       },
       tooltip: {
-        pointFormat: '<span style="color:{series.color}">{series.name}</span>:' +
-          ' <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+        pointFormat: '<span style="color:{series.color}">{series.name}</span>' +
+          ': <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
         shared: true
       },
       plotOptions: {
