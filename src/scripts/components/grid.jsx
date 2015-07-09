@@ -21,12 +21,12 @@ export default class Grid extends React.Component {
     });
 
     return (
-      <div className="panel panel-info tab-pane fade in active" id="grid">
+      <div className="panel panel-info tab-pane in active" id="grid">
         <div className="panel-heading">Grid</div>
         <div className="panel-body">
           <div className="alert alert-success">
             <span className="glyphicon glyphicon-info-sign"></span>
-            Tips : Select item(s) and then click Chart / Map to see visualization.
+            {'Tips : Select item(s) and then click Chart / Map to see visualization.'}
           </div>
           <div className="table-responsive" id="grid-table">
             <table id="grid-data" className="table">

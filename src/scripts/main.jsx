@@ -2,6 +2,7 @@
 
 import 'babel-core/polyfill';
 import '../styles/main.scss';
+import 'bootstrap-sass';
 import React from 'react';
 import Visualization from './components/visualization.jsx';
 

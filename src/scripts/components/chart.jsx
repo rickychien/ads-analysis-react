@@ -147,12 +147,12 @@ export default class Chart extends React.Component {
     let lineOptions = this._updateLineChart();
 
 		return (
-      <div className="panel panel-info tab-pane fade in active" id="chart">
+      <div className="panel panel-info tab-pane in active" id="chart">
         <div className="panel-heading">Chart</div>
         <div className="panel-body">
           <div className="alert alert-success">
             <span className="glyphicon glyphicon-info-sign"></span>
-            Tips : Select item(s) from Grid to see Chart visualization.
+            {'Tips : Select item(s) from Grid to see Chart visualization.'}
           </div>
           <Highcharts config={columnOption} />
           <Highcharts config={lineOptions[0]} />
