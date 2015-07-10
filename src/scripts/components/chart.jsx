@@ -107,6 +107,7 @@ export default class Chart extends React.Component {
           },
           series: []
         };
+
         records.forEach(record => {
           let id = record.id;
 

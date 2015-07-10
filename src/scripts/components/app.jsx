@@ -18,6 +18,8 @@ export default class App extends React.Component {
   _changeCategory(category) {
     this.setState({
       category: category
+    }, () => {
+      this.refs.visualization._updateRecords();
     });
   }
 
@@ -34,6 +36,7 @@ export default class App extends React.Component {
         <div id="view" className="col-md-9">
           <Search />
           <Visualization
+            ref="visualization"
             {...this.state}
           />
         </div>

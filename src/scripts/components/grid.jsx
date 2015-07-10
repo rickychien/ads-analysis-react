@@ -6,6 +6,10 @@ import RecordItemRow from './record-item-row.jsx';
 
 export default class Grid extends React.Component {
 
+  constructor() {
+    super();
+  }
+
   render() {
     let records = this.props.records;
     let rows = records.map(record => {
