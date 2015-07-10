@@ -1,5 +1,5 @@
 [
-  {"id":1,"notification_id":1,"udid":10001,"read_count":3,"unread_count":12,"lat":23.557017988017574,"lng":121.07184816277805,"updated_at":"2013/11/21 08:21"},
+  {"id":1,"notification_id":1,"udid":10001,"read_count":19,"unread_count":12,"lat":23.557017988017574,"lng":121.07184816277805,"updated_at":"2013/11/21 08:21"},
   {"id":2,"notification_id":1,"udid":10002,"read_count":2,"unread_count":11,"lat":23.701798801757415,"lng":121.17184816277805,"updated_at":"2013/11/21 08:31"},
   {"id":3,"notification_id":1,"udid":10003,"read_count":5,"unread_count":6,"lat":23.568117988017574,"lng":121.27184816277805,"updated_at":"2013/11/21 09:12"},
   {"id":4,"notification_id":1,"udid":10004,"read_count":8,"unread_count":3,"lat":23.599017988017574,"lng":121.37184816277805,"updated_at":"2013/11/21 09:25"},

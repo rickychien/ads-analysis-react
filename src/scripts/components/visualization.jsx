@@ -27,6 +27,8 @@ export default class Visualization extends React.Component {
   _updateRecords() {
     $.get(`data/${this.props.category}.json`, records => {
       this.setState({
+        tab: 'grid',
+        selections: {},
         records: records
       });
     });
@@ -78,17 +80,17 @@ export default class Visualization extends React.Component {
     return (
       <div>
         <ul className="nav nav-tabs nav-justified" id="tabs">
-          <li>
+          <li className={tab === 'chart' ? 'active' : ''}>
             <a data-toggle="tab" href="#chart" id="chart-tab"
               onClick={this._handleTab.bind(this, 'chart')}>Chart
             </a>
           </li>
-          <li className="active">
+          <li className={tab === 'grid' ? 'active' : ''}>
             <a data-toggle="tab" href="#grid" id="grid-tab"
               onClick={this._handleTab.bind(this, 'grid')}>Grid
             </a>
           </li>
-          <li>
+          <li className={tab === 'map' ? 'active' : ''}>
             <a data-toggle="tab" href="#map" id="map-tab"
               onClick={this._handleTab.bind(this, 'map')}>Map
             </a>

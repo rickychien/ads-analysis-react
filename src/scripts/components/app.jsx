@@ -16,6 +16,8 @@ export default class App extends React.Component {
   }
 
   _changeCategory(category) {
+    if (category === this.state.category) return;
+
     this.setState({
       category: category
     }, () => {
