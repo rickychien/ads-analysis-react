@@ -4,15 +4,9 @@ import 'babel-core/polyfill';
 import '../styles/main.scss';
 import 'bootstrap-sass';
 import React from 'react';
-import Visualization from './components/visualization.jsx';
-
-var category = 'notifications';
-var source = `data/${category}.json`;
+import App from './components/app.jsx';
 
 React.render(
-  <Visualization
-    category={category}
-    source={source}
-  />,
-  document.getElementById('visualization')
+  <App />,
+  document.getElementById('root')
 );

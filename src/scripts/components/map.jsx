@@ -50,23 +50,13 @@ export default class Map extends React.Component {
   }
 
   render() {
-    let clusters = this._updateMap();
-    let markers = [];
-    let infoWindows = [];
-    clusters.forEach((logs, i) => {
-      return logs.forEach((log, j) => {
-        markers.push(
+    let markers = this._updateMap().map((logs, i) => {
+      return logs.map((log, j) => {
+        let id = '' + i + '-' + j;
+        return (
           <Marker
-            key={'marker' + i * 10 + j}
-            lat={log.lat} 
-            lng={log.lng}
-          />
-        );
-        infoWindows.push(
-          <InfoWindow
-            key={'infowindow' + i * 10 + j}
-            content={log.info}
-            lat={log.lat} 
+            key={'marker' + id}
+            lat={log.lat}
             lng={log.lng}
           />
         );
@@ -83,14 +73,13 @@ export default class Map extends React.Component {
           </div>
           <div className="map-wrapper">
             <div id="map-canvas">
-              <Gmaps 
+              <Gmaps
                 width={'100%'}
                 height={'100%'}
                 lat={23.57873}
                 lng={121.0227}
                 zoom={7}>
                 {markers}
-                {infoWindows}
               </Gmaps>
             </div>
           </div>

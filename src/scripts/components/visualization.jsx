@@ -10,6 +10,7 @@ export default class Visualization extends React.Component {
 
   constructor() {
     super();
+    this._updateRecords = this._updateRecords.bind(this);
     this._updateRawRecords = this._updateRawRecords.bind(this);
     this.state = {
       tab: 'grid',
@@ -20,7 +21,11 @@ export default class Visualization extends React.Component {
   }
 
   componentDidMount() {
-    $.get(this.props.source, records => {
+    this._updateRecords();
+  }
+
+  _updateRecords() {
+    $.get(`data/${this.props.category}.json`, records => {
       this.setState({
         records: records
       });
@@ -53,18 +58,21 @@ export default class Visualization extends React.Component {
     let partial;
 
     if (tab === 'chart') {
-      partial = <Chart
-                  {...this.state}
-                />;
+      partial =
+        <Chart
+          {...this.state}
+        />;
     } else if (tab === 'grid') {
-      partial = <Grid
-                  {...this.state}
-                  onRowSelect={this._updateRawRecords}
-                />;
+      partial =
+        <Grid
+          {...this.state}
+          onRowSelect={this._updateRawRecords}
+        />;
     } else if (tab === 'map') {
-      partial = <Maps
-                  {...this.state}
-                />;
+      partial =
+        <Maps
+          {...this.state}
+        />;
     }
 
     return (
