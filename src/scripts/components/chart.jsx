@@ -141,11 +141,18 @@ export default class Chart extends React.Component {
     }
 
     return options;
-}
+  }
 
 	render() {
     let columnOption = this._updateColumnChart();
-    let lineOptions = this._updateLineChart();
+    let lineCharts = this._updateLineChart().map((option, idx) => {
+      return (
+        <Highcharts
+          key={idx}
+          config={option}
+        />
+      );
+    });
 
 		return (
       <div className="panel panel-info tab-pane in active" id="chart">
@@ -156,8 +163,7 @@ export default class Chart extends React.Component {
             {'Tips : Select item(s) from Grid to see Chart visualization.'}
           </div>
           <Highcharts config={columnOption} />
-          <Highcharts config={lineOptions[0]} />
-          <Highcharts config={lineOptions[1]} />
+          {lineCharts}
         </div>
       </div>
 		);

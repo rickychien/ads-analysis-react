@@ -23,7 +23,7 @@ var defaultStatsOptions = {
   cachedAssets: false,
   reasons: false,
   source: false,
-  errorDetails: false,
+  errorDetails: false
 };
 
 gulp.task('default', ['webpack', 'override', 'data']);

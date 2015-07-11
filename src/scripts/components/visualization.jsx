@@ -29,7 +29,8 @@ export default class Visualization extends React.Component {
       this.setState({
         tab: 'grid',
         selections: {},
-        records: records
+        records: records,
+        rawRecords: {}
       });
     });
   }
