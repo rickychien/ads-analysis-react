@@ -12,12 +12,12 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /bootstrap-sass\/assets\/javascripts\//,
+        test: /bootstrap/,
         loader: 'imports?jQuery=jquery'
       },
       {
-        test: /\.scss$/,
-        loader: 'style!css!sass?sourceMap'
+        test: /\.css$/,
+        loader: 'style!css'
       },
       {
         test: /\.jpe?g$|\.gif$|\.png|\.woff2?|\.ttf|\.eot|\.svg$/,
